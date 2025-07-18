@@ -159,7 +159,7 @@ export default function CareersPage() {
                       <Play className="h-4 w-4 mr-2" />
                       Watch Story
                     </Button>
-                    <Button className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm">
+                    <Button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm">
                       Profile
                     </Button>
                   </div>

@@ -10,4 +10,68 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+}
+
+/* Ensure button text is always visible */
+button {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Button visibility fixes */
+button:not([class*="text-"]) {
+  color: inherit;
+}
+
+/* Ensure buttons with custom backgrounds have contrasting text */
+.bg-blue-600, .bg-blue-700 {
+  color: white !important;
+}
+
+.bg-white {
+  color: #1f2937 !important;
+}
+
+.bg-transparent {
+  color: inherit !important;
+}
+
+/* Fix for any text that might be invisible */
+.text-white {
+  color: white !important;
+}
+
+.text-blue-600 {
+  color: #2563eb !important;
+}
+
+.text-gray-700 {
+  color: #374151 !important;
+}
+
+/* Ensure button hover states are visible */
+button:hover {
+  opacity: 0.9;
+}
+
+/* Fix for buttons that might have invisible text on hover */
+.hover\\:bg-blue-50:hover {
+  background-color: #eff6ff !important;
+  color: #1f2937 !important;
+}
+
+.hover\\:bg-blue-700:hover {
+  background-color: #1d4ed8 !important;
+  color: white !important;
+}
+
+.hover\\:bg-blue-50:hover {
+  background-color: #eff6ff !important;
+}
+
+/* Ensure focus states are visible */
+button:focus-visible {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
 } 

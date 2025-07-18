@@ -1,10 +1,57 @@
+'use client'
+
 import React from 'react'
 import Header from '@/header'
 import { Button } from '@/components/ui/button'
 import { Trophy, Star, Target, BookOpen, Clock, TrendingUp, Calendar, Award, Play, CheckCircle, Heart, Brain, Activity } from 'lucide-react'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardPage() {
+  const { user, profile } = useAuth()
+
+  const getUserName = () => {
+    if (profile?.display_name) {
+      return profile.display_name
+    }
+    if (user?.email) {
+      const username = user.email.split('@')[0]
+      
+      // Try to extract first name from username
+      const extractFirstName = (username: string) => {
+        // First check for common separators
+        const separators = ['.', '_', '-']
+        for (const sep of separators) {
+          if (username.includes(sep)) {
+            const firstPart = username.split(sep)[0]
+            if (firstPart.length >= 3) {
+              return firstPart.charAt(0).toUpperCase() + firstPart.slice(1).toLowerCase()
+            }
+          }
+        }
+        
+        // If no separators, try to extract first name by length
+        // Most first names are 3-7 characters, try 5 first (good for "Jaden" from "jadenryu")
+        if (username.length >= 6) {
+          const firstName = username.slice(0, 5)
+          return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
+        }
+        
+        // For shorter usernames, try 4 characters
+        if (username.length >= 5) {
+          const firstName = username.slice(0, 4)
+          return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
+        }
+        
+        // For very short usernames, just capitalize the whole thing
+        return username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()
+      }
+      
+      return extractFirstName(username)
+    }
+    return 'Student'
+  }
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Header />
@@ -14,7 +61,7 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Welcome back, Sarah!</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Welcome back, {getUserName()}!</h1>
               <p className="text-gray-600 mt-2">Ready to continue your medical learning journey?</p>
             </div>
             <div className="flex items-center space-x-4">

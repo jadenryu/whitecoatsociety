@@ -1,0 +1,16 @@
+# Copy this to .env and fill in your actual values
+
+# Supabase Authentication & Database Configuration
+
+# Supabase Configuration
+SUPABASE_URL=your-supabase-url
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+SUPABASE_ANON_KEY=your-supabase-anon-key
+
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
+
+# CORS Configuration
+FRONTEND_URL=http://localhost:3000 
